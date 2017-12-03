@@ -1,0 +1,321 @@
+<html>
+<head>
+<style>
+    body {
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        padding: 0;
+        background-color: #FAFAFA;
+        font: 12pt "Tahoma";
+    }
+    * {
+        box-sizing: border-box;
+        -moz-box-sizing: border-box;
+    }
+    .page {
+        width: 210mm;
+        min-height: 297mm;
+        /*padding: 20mm;*/
+        margin: 10mm auto;
+        border: 1px #D3D3D3 solid;
+        border-radius: 5px;
+        background: white;
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+
+        position: relative;
+    }
+    .subpage {
+        /*padding: 1cm;*/
+        /*border: 5px red solid;*/
+        /*height: 257mm;*/
+        /*outline: 2cm #FFEAEA solid;*/
+    }
+
+    .form div{
+        margin-top: 15px;
+    }
+
+    /*
+    <-- element style start -->
+    */
+    @font-face {
+        font-family: "CenturyGothic";
+        src: url("century-gothic.ttf");
+    }
+    @font-face {
+        font-family: "AvenirNext";
+        src: url("avenir-next-regular.ttf");
+    }
+    .page .element{
+        position: absolute;
+    }
+    .title-name{
+        font-size: 17.82mm;
+        color: #000;
+        font-family: "CenturyGothic";
+
+        top: 21.87mm;
+        left: 18mm;
+    }
+    .subtitle{
+        color: #4d4d4d;
+        font-size: 4.23mm;
+        font-family: "AvenirNext";
+
+        top: 46.21mm;
+        left: 18.35mm;
+    }
+
+    .date-text{
+        color: #E1600F;
+        font-size: 4.23mm;
+        font-family: "AvenirNext";
+
+        top: 46.21mm;
+        left: 60.35mm;
+    }
+
+    .header-row {
+        color: #999;
+        font-size: 4.23mm;
+        font-family: "CenturyGothic";
+    }
+    .header-row.row-item-header{
+        top: 94.88mm;
+        left: 88.24mm;
+    }
+    .header-row.row-qty-header{
+        top: 94.88mm;
+        left: 157.05mm;
+    }
+    .header-row.row-total-header{
+        top: 94.88mm;
+        left: 176.47mm;
+    }
+
+    .header-line{
+        outline: 0.35mm #999 solid;
+        width: 98.12mm;
+
+        top: 101.94mm;
+        left: 89.64mm;
+    }
+
+    .invoice-item{
+        font-family: "CenturyGothic";
+        top: 105.82mm;
+        left: 87.88mm;
+    }
+    .invoice-item-name{
+        color: #4d4d4d;
+        font-size: 4.94mm;
+        width: 51.18mm;
+    }
+    .invoice-qty{
+        color: #4d4d4d;
+        font-size: 4.94mm;
+
+        left: 71.29mm;
+        text-align: right;
+    }
+    .invoice-price{
+        color: #4d4d4d;
+        font-size: 4.94mm;
+
+        left: 87.35mm;
+        text-align: right;
+    }
+    .invoice-price-total{
+        color: #999;
+        font-size: 5.64mm;
+        text-align: right;
+
+        top: 20.46mm;
+        left: 86.65mm;
+    }
+
+    .footer-line{
+        outline: 1mm #000 solid;
+        /*height: 1.41mm;*/
+        height: 0;
+        width: 167.12mm;
+        /*background-color: #000;*/
+
+        top: 257.14mm;
+        left: 19.59mm;
+    }
+
+    .company-address{
+        color: #4D4D4D;
+        font-size: 2.82mm;
+        font-family: "CenturyGothic";
+
+        top: 263.49mm;
+        left: 19.41mm;
+    }
+    .company-address b{
+        font-size: 3.5mm;
+    }
+
+    .invoice-address{
+        color: #4D4D4D;
+        font-size: 2.82mm;
+        font-family: "CenturyGothic";
+
+        top: 263.49mm;
+        left: 63.88mm;
+    }
+
+    .invoice-address b{
+        color: #000;
+        font-size: 3.5mm;
+    }
+
+    .thankyou{
+        color: #E1600F;
+        font-size: 3.5mm;
+        font-family: "CenturyGothic";
+
+        top: 263.49mm;
+        left: 112.59mm;
+    }
+    /*
+    <-- element style end -->
+    */
+    
+    @page {
+        size: A4;
+        margin: 0;
+    }
+    @media print {
+        html, body {
+            width: 210mm;
+            height: 297mm;        
+        }
+        .page {
+            margin: 0;
+            border: initial;
+            border-radius: initial;
+            width: initial;
+            min-height: initial;
+            box-shadow: initial;
+            background: initial;
+            page-break-after: always;
+        }
+        .form{
+            display: none;
+        }
+    }
+</style>
+</head>
+
+<body>
+
+    <div class="form">
+        <div>
+            Purchase date: <input type="text" id="dateText" value="Nov 14, 2017" />
+        </div>
+
+        <div>
+            Item name: <br/>
+            <textarea cols="80" rows="5" id="itemText">Subscription to Magic Mirror 3 Pro Year ($23.99/month)</textarea>
+        </div>
+
+        <div>
+            Qty: <input type="text" id="qtyText" value="1" />
+        </div>
+
+        <div>
+            Single price (add if any discounted amount on newline): <br/>
+            <textarea cols="80" rows="2" id="priceText">23.99$
+-11.99$
+            </textarea>
+        </div>
+
+        <div>
+            Total: <input type="text" id="totalText" value="12.00$" />
+        </div>
+
+        <div>
+            Address 1: (or company name) <br>
+            <textarea id="address1Text" cols="80" rows="5">Address line 1</textarea>
+        </div>
+        <div>
+            Address 2: <br>
+            <textarea id="address2Text" cols="80" rows="5">Address line 2
+address line 3
+address line 4</textarea>
+        </div>
+
+        <div>
+            <input type="button" value="Update and print" id="printButton" /> * Print as pdf to save
+        </div>
+        <hr>
+    </div>
+
+<div class="book">
+    <div class="page">
+        <div class="title-name element">magic mirror</div>
+        <div class="subtitle element">plugin for Sketch 3</div>
+        <div class="date-text element">Sep 12, 2016</div>
+
+        <div class="row-item-header header-row element">Item</div>
+        <div class="row-qty-header header-row element">Qty</div>
+        <div class="row-total-header header-row element">Total</div>
+
+        <div class="header-line element"></div>
+
+        <div class="invoice-item element">
+            <div class="invoice-item-name element">Magic Mirror Pro Version</div>
+            <div class="invoice-qty element">1</div>
+            <div class="invoice-price element">12.0$</div>
+            <div class="invoice-price-total element">12.0$</div>
+        </div>
+
+        <div class="footer-line element"></div>
+
+        <div class="company-address element"><b>MagicSketch Limited</b><br/>
+Room C, 2/F.,<br/>
+Capital Trade Centre,<br/>
+62 Tsun Yip Street,<br/>
+Kwun Tong,<br/>
+Hong Kong SAR
+        </div>
+
+        <div class="invoice-address element"><b>Adress line 1</b><br/>
+            Adress line 2<br>Adress line 1<br>Adress line 1
+        </div>
+        
+        <div class="thankyou element">Thank you.</div>
+    </div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+    $('#printButton').click(function(e){
+        var dateText = $("#dateText").val();
+        var itemText = $("#itemText").val();
+        var qtyText = $("#qtyText").val();
+        var priceText = $("#priceText").val();
+        var totalText = $("#totalText").val();
+        var address1Text = $("#address1Text").val();
+        var address2Text = $("#address2Text").val();
+
+        $('.date-text').html(dateText);
+        $('.invoice-item-name').html(itemText);
+        $('.invoice-qty').html(qtyText);
+        $('.invoice-price').html(priceText.replace(/\n/g, "<br>"));
+        $('.invoice-price-total').html(totalText);
+        $('.invoice-address').html("<b>" + address1Text + "</b><br>").append(address2Text.replace(/\n/g, "<br>"));
+
+        window.print();
+    });
+});
+</script>
+
+</div>
+
+</body>
+
+</html>
