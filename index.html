@@ -186,6 +186,9 @@
         top: 263.49mm;
         left: 112.59mm;
     }
+    input[type="button"]{
+        background-color: #0f0;
+    }
     /*
     <-- element style end -->
     */
@@ -321,7 +324,7 @@ $(document).ready(function(){
         $('.invoice-qty').html(qtyText);
         $('.invoice-price').html(priceText.replace(/\n/g, "<br>"));
         $('.invoice-price-total').html(totalText);
-        $('.invoice-address').html("<b>" + address1Text + "</b><br>").append(address2Text.replace(/\n/g, "<br>"));
+        $('.invoice-address').html("<b>" + address1Text.replace(/\n/g, "<br>") + "</b><br>").append(address2Text.replace(/\n/g, "<br>"));
 
         window.print();
     });
